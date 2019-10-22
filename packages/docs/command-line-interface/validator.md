@@ -4,25 +4,63 @@ description: View and manage validators
 
 ## Commands
 
-### Affiliation
+### Affiliate
 
-Manage affiliation to a ValidatorGroup
+Affiliate to a ValidatorGroup
 
 ```
 USAGE
-  $ celocli validator:affiliation
+  $ celocli validator:affiliate GROUPADDRESS
+
+ARGUMENTS
+  GROUPADDRESS  ValidatorGroup's address
 
 OPTIONS
-  --from=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d  (required) Validator's address
-  --set=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d   set affiliation to given address
-  --unset                                            clear affiliation field
+  --from=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d  (required) Signer or Validator's address
 
-EXAMPLES
-  affiliation --set 0x97f7333c51897469e8d98e7af8653aab468050a3 --from 0x47e172f6cfb6c7d01c1574fa3e2be7cc73269d95
-  affiliation --unset --from 0x47e172f6cfb6c7d01c1574fa3e2be7cc73269d95
+EXAMPLE
+  affiliate --from 0x47e172f6cfb6c7d01c1574fa3e2be7cc73269d95 0x97f7333c51897469e8d98e7af8653aab468050a3
 ```
 
-_See code: [packages/cli/src/commands/validator/affiliation.ts](https://github.com/celo-org/celo-monorepo/tree/master/packages/cli/src/commands/validator/affiliation.ts)_
+_See code: [packages/cli/src/commands/validator/affiliate.ts](https://github.com/celo-org/celo-monorepo/tree/master/packages/cli/src/commands/validator/affiliate.ts)_
+
+### Deaffiliate
+
+DeAffiliate to a ValidatorGroup
+
+```
+USAGE
+  $ celocli validator:deaffiliate
+
+OPTIONS
+  --from=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d  (required) Signer or Validator's address
+
+EXAMPLE
+  deaffiliate --from 0x47e172f6cfb6c7d01c1574fa3e2be7cc73269d95
+```
+
+_See code: [packages/cli/src/commands/validator/deaffiliate.ts](https://github.com/celo-org/celo-monorepo/tree/master/packages/cli/src/commands/validator/deaffiliate.ts)_
+
+### Deregister
+
+Deregister from an ValidatorGroup
+
+```
+USAGE
+  $ celocli validator:deregister VALIDATORADDRESS
+
+ARGUMENTS
+  VALIDATORADDRESS  Validator's address
+
+OPTIONS
+  --from=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d  (required) Signer or Validator's address
+
+EXAMPLES
+  deregister --from 0x47e172f6cfb6c7d01c1574fa3e2be7cc73269d95
+  deregister --from 0x47e172f6cfb6c7d01c1574fa3e2be7cc73269d95 0x97f7333c51897469e8d98e7af8653aab468050a3
+```
+
+_See code: [packages/cli/src/commands/validator/deregister.ts](https://github.com/celo-org/celo-monorepo/tree/master/packages/cli/src/commands/validator/deregister.ts)_
 
 ### List
 
