@@ -1,3 +1,4 @@
+import { eqAddress } from '@celo/utils/lib/address'
 import { fromFixed, toFixed } from '@celo/utils/lib/fixidity'
 import BigNumber from 'bignumber.js'
 import { Address, NULL_ADDRESS } from '../base'
@@ -51,6 +52,21 @@ export class ValidatorsWrapper extends BaseWrapper<Validators> {
   deaffiliate = proxySend(this.kit, this.contract.methods.deaffiliate)
   removeMember = proxySend(this.kit, this.contract.methods.removeMember)
   registerValidator = proxySend(this.kit, this.contract.methods.registerValidator)
+
+  /**
+   * @notice De-registers a validator, removing it from the group for which it is a member.
+   * @param validatorAddress Address of the validator to deregister
+   */
+  async deregisterValidator(validatorAddress: Address) {
+    const allValidators = await this.getRegisteredValidatorsAddresses()
+    const idx = allValidators.findIndex((addr) => eqAddress(validatorAddress, addr))
+
+    if (idx < 0) {
+      throw new Error(`${validatorAddress} is not a registered validator`)
+    }
+    return toTransactionObject(this.kit, this.contract.methods.deregisterValidator(idx))
+  }
+
   async registerValidatorGroup(
     name: string,
     commission: BigNumber
@@ -116,8 +132,12 @@ export class ValidatorsWrapper extends BaseWrapper<Validators> {
     }
   }
 
+  getRegisteredValidatorsAddresses: () => Promise<Address[]> = proxyCall(
+    this.contract.methods.getRegisteredValidators
+  )
+
   async getRegisteredValidators(): Promise<Validator[]> {
-    const vgAddresses = await this.contract.methods.getRegisteredValidators().call()
+    const vgAddresses = await this.getRegisteredValidatorsAddresses()
 
     return Promise.all(vgAddresses.map((addr) => this.getValidator(addr)))
   }
