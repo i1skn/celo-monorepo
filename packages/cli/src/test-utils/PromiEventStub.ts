@@ -18,6 +18,9 @@ export function promiEventSpy<T>(): PromiEventStub<T> {
     then: () => {
       throw new Error('not implemented')
     },
+    finally: () => {
+      throw new Error('not implemented')
+    },
     on: ((event: string, listener: (...args: any[]) => void) => ee.on(event, listener)) as any,
     once: ((event: string, listener: (...args: any[]) => void) => ee.once(event, listener)) as any,
     [Symbol.toStringTag]: 'Not Implemented',
