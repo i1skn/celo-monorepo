@@ -28,7 +28,7 @@
     "prepack": "yarn run build && oclif-dev manifest && oclif-dev readme",
     "test:reset": "yarn --cwd ../protocol devchain generate .devchain",
     "test:livechain": "yarn --cwd ../protocol devchain run .devchain",
-    "test": "TZ=UTC jest"
+    "test": "TZ=UTC jest --runInBand"
   },
   "dependencies": {
     "@celo/contractkit": "^0.1.6",
