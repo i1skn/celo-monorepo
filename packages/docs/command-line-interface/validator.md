@@ -43,21 +43,17 @@ _See code: [packages/cli/src/commands/validator/deaffiliate.ts](https://github.c
 
 ### Deregister
 
-Deregister from an ValidatorGroup
+Deregister a Validator
 
 ```
 USAGE
-  $ celocli validator:deregister VALIDATORADDRESS
-
-ARGUMENTS
-  VALIDATORADDRESS  Validator's address
+  $ celocli validator:deregister
 
 OPTIONS
   --from=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d  (required) Signer or Validator's address
 
-EXAMPLES
+EXAMPLE
   deregister --from 0x47e172f6cfb6c7d01c1574fa3e2be7cc73269d95
-  deregister --from 0x47e172f6cfb6c7d01c1574fa3e2be7cc73269d95 0x97f7333c51897469e8d98e7af8653aab468050a3
 ```
 
 _See code: [packages/cli/src/commands/validator/deregister.ts](https://github.com/celo-org/celo-monorepo/tree/master/packages/cli/src/commands/validator/deregister.ts)_
@@ -98,6 +94,20 @@ EXAMPLE
 ```
 
 _See code: [packages/cli/src/commands/validator/register.ts](https://github.com/celo-org/celo-monorepo/tree/master/packages/cli/src/commands/validator/register.ts)_
+
+### Requirements
+
+Get Requirements for Validators
+
+```
+USAGE
+  $ celocli validator:requirements
+
+EXAMPLE
+  requirements
+```
+
+_See code: [packages/cli/src/commands/validator/requirements.ts](https://github.com/celo-org/celo-monorepo/tree/master/packages/cli/src/commands/validator/requirements.ts)_
 
 ### Show
 

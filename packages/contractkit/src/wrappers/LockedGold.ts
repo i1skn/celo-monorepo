@@ -49,18 +49,10 @@ export interface LockedGoldConfig {
  */
 export class LockedGoldWrapper extends BaseWrapper<LockedGold> {
   /**
-   * Unlocks gold that becomes withdrawable after the unlocking period.
-   * @param value The amount of gold to unlock.
-   */
-  unlock: (value: NumberLike) => CeloTransactionObject<void> = proxySend(
-    this.kit,
-    this.contract.methods.unlock,
-    tupleParser(parseNumber)
-  )
-  /**
    * Creates an account.
    */
   createAccount = proxySend(this.kit, this.contract.methods.createAccount)
+
   /**
    * Withdraws a gold that has been unlocked after the unlocking period has passed.
    * @param index The index of the pending withdrawal to withdraw.
@@ -69,10 +61,23 @@ export class LockedGoldWrapper extends BaseWrapper<LockedGold> {
     this.kit,
     this.contract.methods.withdraw
   )
+
   /**
-   * @notice Locks gold to be used for voting.
+   * Locks gold to be used for voting.
+   * The gold to be locked, must be specified as the `tx.value`
    */
   lock = proxySend(this.kit, this.contract.methods.lock)
+
+  /**
+   * Unlocks gold that becomes withdrawable after the unlocking period.
+   * @param value The amount of gold to unlock.
+   */
+  unlock: (value: NumberLike) => CeloTransactionObject<void> = proxySend(
+    this.kit,
+    this.contract.methods.unlock,
+    tupleParser(parseNumber)
+  )
+
   /**
    * Relocks gold that has been unlocked but not withdrawn.
    * @param index The index of the pending withdrawal to relock.
@@ -92,6 +97,7 @@ export class LockedGoldWrapper extends BaseWrapper<LockedGold> {
     undefined,
     toBigNumber
   )
+
   /**
    * Returns the total amount of non-voting locked gold for an account.
    * @param account The account.
@@ -102,6 +108,7 @@ export class LockedGoldWrapper extends BaseWrapper<LockedGold> {
     undefined,
     toBigNumber
   )
+
   /**
    * Returns the voter for the specified account.
    * @param account The address of the account.
@@ -110,6 +117,7 @@ export class LockedGoldWrapper extends BaseWrapper<LockedGold> {
   getVoterFromAccount: (account: string) => Promise<Address> = proxyCall(
     this.contract.methods.getVoterFromAccount
   )
+
   /**
    * Returns the validator for the specified account.
    * @param account The address of the account.
@@ -118,12 +126,30 @@ export class LockedGoldWrapper extends BaseWrapper<LockedGold> {
   getValidatorFromAccount: (account: string) => Promise<Address> = proxyCall(
     this.contract.methods.getValidatorFromAccount
   )
+
+  /**
+   * Returns the account address given the signer for validating
+   * @param signer Address that is authorized to sign the tx as validator
+   * @return The Account address
+   */
+  validatorSignerToAccount: (signer: Address) => Promise<Address> = proxyCall(
+    this.contract.methods.getAccountFromActiveValidator
+  )
+
   /**
    * Check if an account already exists.
    * @param account The address of the account
    * @return Returns `true` if account exists. Returns `false` otherwise.
    */
   isAccount: (account: string) => Promise<boolean> = proxyCall(this.contract.methods.isAccount)
+
+  /**
+   * Check if an address is a signer address
+   * @param address The address of the account
+   * @return Returns `true` if account exists. Returns `false` otherwise.
+   */
+  isSigner: (address: string) => Promise<boolean> = proxyCall(this.contract.methods.isAuthorized)
+
   /**
    * Returns current configuration parameters.
    */

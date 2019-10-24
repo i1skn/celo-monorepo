@@ -1,5 +1,6 @@
 import { IArg } from '@oclif/parser/lib/args'
 import { BaseCommand } from '../../base'
+import { newCheckBuilder } from '../../utils/checks'
 import { displaySendTx } from '../../utils/cli'
 import { Args, Flags } from '../../utils/command'
 
@@ -23,6 +24,14 @@ export default class ValidatorAffiliate extends BaseCommand {
     const res = this.parse(ValidatorAffiliate)
     this.kit.defaultAccount = res.flags.from
     const validators = await this.kit.contracts.getValidators()
+
+    await newCheckBuilder(this, res.flags.from)
+      .isSignerOrAccount()
+      .canSignValidatorTxs()
+      .signerAccountIsValidator()
+      .isValidatorGroup(res.args.groupAddress)
+      .runChecks()
+
     await displaySendTx('affiliate', validators.affiliate(res.args.groupAddress))
   }
 }

@@ -1,4 +1,5 @@
 import { BaseCommand } from '../../base'
+import { newCheckBuilder } from '../../utils/checks'
 import { displaySendTx } from '../../utils/cli'
 import { Flags } from '../../utils/command'
 
@@ -16,6 +17,13 @@ export default class ValidatorDeAffiliate extends BaseCommand {
     const res = this.parse(ValidatorDeAffiliate)
     this.kit.defaultAccount = res.flags.from
     const validators = await this.kit.contracts.getValidators()
+
+    await newCheckBuilder(this, res.flags.from)
+      .isSignerOrAccount()
+      .canSignValidatorTxs()
+      .signerAccountIsValidator()
+      .runChecks()
+
     await displaySendTx('deaffiliate', validators.deaffiliate())
   }
 }
