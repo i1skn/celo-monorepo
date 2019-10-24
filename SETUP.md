@@ -91,25 +91,36 @@ Install the Android SDK and platform tools:
 
 ```bash
 brew cask install android-sdk
+brew cask install android-ndk
 brew cask install android-platform-tools
 ```
 
-Next install [Android Studio][android studio] and add the [Android NDK][android ndk]
+Next install [Android Studio][android studio]
 
 Execute the following (and make sure the lines are in your `~/.bash_profile`):
 
 ```bash
-export ANDROID_HOME=/usr/local/share/android-sdk
-export ANDROID_NDK=/usr/local/share/android-ndk
+export ANDROID_HOME="$(brew --prefix)/share/android-sdk"
+export ANDROID_NDK="$(brew --prefix)/share/android-ndk"
 # Optional to speedup java builds
 export GRADLE_OPTS='-Dorg.gradle.daemon=true -Dorg.gradle.parallel=true -Dorg.gradle.jvmargs="-Xmx4096m -XX:+HeapDumpOnOutOfMemoryError"'
 ```
 
+Reload the terminal and do:
+```
+echo $ANDROID_HOME
+```
+(it depends on `$(brew --prefix)`, but it should be similiar to `/usr/local/share/android-sdk`)
+
+Open Android Studio > Preferences > Appearance & Behavior > System Settings > Android SDK and set *Android SDK Location* to **ANDROID_HOME** path.
+
 Then install the Android 28 platform:
 
 ```bash
-sdkmanager 'platforms;android-28'
+sdkmanager "platform-tools" "platforms;android-28" "extras;intel;Hardware_Accelerated_Execution_Manager" "build-tools;28.0.0"
 ```
+
+Optional: [Install an Android Emulator](#optional-install-an-android-emulator)
 
 ### Linux
 
@@ -204,7 +215,7 @@ and running `make ndk_bundle`. This will download the NDK for your platform.
 Install the Android 28 system image and create an Android Virtual Device:
 
 ```bash
-sdkmanager "system-images;android-28;google_apis;x86"
+sdkmanager "system-images;android-28;google_apis;x86" "emulator"
 avdmanager create avd --force --name Nexus_5X_API_28 --device "Nexus 5X" -k "system-images;android-28;google_apis;x86" --abi "google_apis/x86"
 ```
 
@@ -212,6 +223,18 @@ Execute the following and add it to your `~/.bash_profile`:
 
 ```bash
 export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$PATH
+```
+During the installation of `android-sdk` brew [creates two symlinks][brew android-sdk tools symlinks]:
+```
+/usr/local/bin/emulator -> $ANDROID_HOME/tools/emulator
+/usr/local/bin/emulator-check -> $ANDROID_HOME/tools/emulator-check
+```
+This would cause `PANIC: Missing emulator engine program for 'x86' CPU` [see here][issue with using tools/emulator binary] for more details.
+
+To fix it - just remove these symlinks:
+```
+rm /usr/local/bin/emulator
+rm /usr/local/bin/emulator-check
 ```
 
 Run the emulator with:
@@ -318,3 +341,5 @@ yarn dev
 [device unauthorized]: https://stackoverflow.com/questions/23081263/adb-android-device-unauthorized
 [homebrew]: https://brew.sh
 [oracle being oracle]: https://github.com/Homebrew/homebrew-cask-versions/issues/7253
+[issue with using tools/emulator binary]: https://www.stkent.com/2017/08/10/update-your-path-for-the-new-android-emulator-location.html
+[brew android-sdk tools symlinks]: https://github.com/Homebrew/homebrew-cask/blob/65494c2f4b8e0afe5974f9ea8a6bca49e38e9383/Casks/android-sdk.rb#L19-L20
