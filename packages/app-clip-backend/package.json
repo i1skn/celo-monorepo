@@ -1,0 +1,45 @@
+{
+  "name": "@celo/app-clip-backend",
+  "version": "0.0.1",
+  "description": "Backend for App Clip Hackathon",
+  "author": "Celo",
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "preserve": "yarn run build",
+    "serve": "cross-env NODE_ENV=production firebase serve",
+    "deploy": "firebase deploy --project app-clip-hackathon",
+    "clean": "tsc -b . --clean",
+    "build": "tsc -b .",
+    "lint": "tslint --project .",
+    "transfer-funds": "ts-node scripts/transfer-funds.ts",
+    "cli": "ts-node scripts/cli.ts",
+    "build:rules": "firebase-bolt database-rules.bolt"
+  },
+  "dependencies": {
+    "@celo/contractkit": "0.3.6",
+    "@celo/utils": "0.1.9",
+    "@firebase/app": "^0.5.3",
+    "@google-cloud/logging": "^7.1.0",
+    "debug": "^4.1.1",
+    "firebase": "^7.8.0",
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.0",
+    "twilio": "^3.39.3",
+    "web3": "1.2.4",
+    "web3-core-helpers": "1.2.4"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.4",
+    "@types/twilio": "^0.0.10",
+    "@types/yargs": "^13.0.2",
+    "cross-env": "5.2.0",
+    "firebase-bolt": "^0.8.4",
+    "firebase-tools": "^8.4.2",
+    "rimraf": "2.6.3",
+    "yargs": "14.0.0"
+  },
+  "engines": {
+    "node": "10"
+  }
+}
