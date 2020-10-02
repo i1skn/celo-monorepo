@@ -64,6 +64,11 @@ def flipper_post_install(installer)
   installer.pods_project.save
 end
 
+target "celoAppClip" do
+  pod 'Stripe'
+end
+
+
 target "celo" do
   use_frameworks!
 

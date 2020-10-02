@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* celoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* celoTests.m */; };
-		0317E786245B696200AAAC2E /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0317E783245B696200AAAC2E /* Inter-Regular.ttf */; };
-		0317E788245B696200AAAC2E /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0317E784245B696200AAAC2E /* Inter-Medium.ttf */; };
-		0317E78A245B696200AAAC2E /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0317E785245B696200AAAC2E /* Inter-SemiBold.ttf */; };
+		0317E786245B696200AAAC2E /* ../fonts/Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0317E783245B696200AAAC2E /* ../fonts/Inter-Regular.ttf */; };
+		0317E788245B696200AAAC2E /* ../fonts/Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0317E784245B696200AAAC2E /* ../fonts/Inter-Medium.ttf */; };
+		0317E78A245B696200AAAC2E /* ../fonts/Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0317E785245B696200AAAC2E /* ../fonts/Inter-SemiBold.ttf */; };
 		0350D7F2EBD64D0585FEF0AF /* Hind-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95E01263B685485BA7D5CEB0 /* Hind-Light.ttf */; };
 		0445977E03C74B20A93158B5 /* Hind-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B59F6FDB7D084157A12E7A52 /* Hind-Bold.ttf */; };
 		0581BC2D3AEB42D086D403E3 /* Hind-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAE92820119F4CC5B23C6636 /* Hind-Medium.ttf */; };
@@ -25,10 +25,19 @@
 		2DCD954D1E0B4F2C00145EB5 /* celoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* celoTests.m */; };
 		2E6B8DA1BF6440D89CB45CCA /* Jost-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A86AF23416DE47E0B4068AE7 /* Jost-Medium.ttf */; };
 		5575263ED1EA4F568D328DE9 /* Hind-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C5952C9D168E4172BB52364C /* Hind-SemiBold.ttf */; };
+		578839D0CF59EEEA5A2BE093 /* libPods-celoAppClip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA98715003F39BFBBC99DC7 /* libPods-celoAppClip.a */; };
 		67911AC6D310414DAAC1498E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F5FA21E7EC46BBB744FE54 /* libz.tbd */; };
 		85E8054E767BF68843B24D43 /* Pods_celo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 691B91F2E7383B2AF94AAA8B /* Pods_celo.framework */; };
 		EB3CF5B346854570A1EC69B3 /* Jost-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F19E0D1442F8460181626D12 /* Jost-Book.ttf */; };
 		F2B1AD5485D68063EC09183F /* Pods_celoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3250C8E518DC2C848EA62404 /* Pods_celoTests.framework */; };
+		F69FCCBD25274C65006E0617 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F69FCCBC25274C65006E0617 /* AppDelegate.m */; };
+		F69FCCC025274C65006E0617 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F69FCCBF25274C65006E0617 /* SceneDelegate.m */; };
+		F69FCCC325274C65006E0617 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69FCCC225274C65006E0617 /* ViewController.m */; };
+		F69FCCC625274C65006E0617 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F69FCCC425274C65006E0617 /* Main.storyboard */; };
+		F69FCCC825274C66006E0617 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F69FCCC725274C66006E0617 /* Assets.xcassets */; };
+		F69FCCCB25274C66006E0617 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F69FCCC925274C66006E0617 /* LaunchScreen.storyboard */; };
+		F69FCCCE25274C66006E0617 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F69FCCCD25274C66006E0617 /* main.m */; };
+		F69FCCD225274C66006E0617 /* celoAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = F69FCCB925274C65006E0617 /* celoAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,16 +55,37 @@
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "celo-tvOS";
 		};
+		F69FCCD025274C66006E0617 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F69FCCB825274C65006E0617;
+			remoteInfo = celoAppClip;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F69FCCD325274C66006E0617 /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				F69FCCD225274C66006E0617 /* celoAppClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* celoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = celoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* celoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = celoTests.m; sourceTree = "<group>"; };
-		0317E783245B696200AAAC2E /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "../fonts/Inter-Regular.ttf"; sourceTree = "<group>"; };
-		0317E784245B696200AAAC2E /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "../fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
-		0317E785245B696200AAAC2E /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "../fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		0317E783245B696200AAAC2E /* ../fonts/Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "../fonts/Inter-Regular.ttf"; sourceTree = "<group>"; };
+		0317E784245B696200AAAC2E /* ../fonts/Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "../fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
+		0317E785245B696200AAAC2E /* ../fonts/Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "../fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		0602B5AFC2AE93CFF1316467 /* Pods-celo-celoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-celo-celoTests.debug.xcconfig"; path = "Target Support Files/Pods-celo-celoTests/Pods-celo-celoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0FE3DE8E2347740700EA87A0 /* celo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = celo.entitlements; path = celo/celo.entitlements; sourceTree = "<group>"; };
 		114969FB1F3AA04FFDC6831F /* Pods-celoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-celoTests.debug.xcconfig"; path = "Target Support Files/Pods-celoTests/Pods-celoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +99,7 @@
 		2D02E47B1E0B4A5D006451C7 /* celo-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "celo-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* celo-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "celo-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3250C8E518DC2C848EA62404 /* Pods_celoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_celoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62941FAEAC7896B62584C93A /* Pods-celoAppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-celoAppClip.debug.xcconfig"; path = "Target Support Files/Pods-celoAppClip/Pods-celoAppClip.debug.xcconfig"; sourceTree = "<group>"; };
 		6844E1A0CA2D7D32349444EC /* Pods-celo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-celo.debug.xcconfig"; path = "Target Support Files/Pods-celo/Pods-celo.debug.xcconfig"; sourceTree = "<group>"; };
 		691B91F2E7383B2AF94AAA8B /* Pods_celo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_celo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95E01263B685485BA7D5CEB0 /* Hind-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Hind-Light.ttf"; path = "../fonts/Hind-Light.ttf"; sourceTree = "<group>"; };
@@ -81,8 +112,23 @@
 		BF61F27C85F8E9CE335BA142 /* Pods-celoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-celoTests.release.xcconfig"; path = "Target Support Files/Pods-celoTests/Pods-celoTests.release.xcconfig"; sourceTree = "<group>"; };
 		C5952C9D168E4172BB52364C /* Hind-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Hind-SemiBold.ttf"; path = "../fonts/Hind-SemiBold.ttf"; sourceTree = "<group>"; };
 		CCB1F49C3DAE62A0F72F43DF /* Pods-celo-celoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-celo-celoTests.release.xcconfig"; path = "Target Support Files/Pods-celo-celoTests/Pods-celo-celoTests.release.xcconfig"; sourceTree = "<group>"; };
+		CF0CF7641B5412195D6D92B1 /* Pods-celoAppClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-celoAppClip.release.xcconfig"; path = "Target Support Files/Pods-celoAppClip/Pods-celoAppClip.release.xcconfig"; sourceTree = "<group>"; };
+		DBA98715003F39BFBBC99DC7 /* libPods-celoAppClip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-celoAppClip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F19E0D1442F8460181626D12 /* Jost-Book.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jost-Book.ttf"; path = "../fonts/Jost-Book.ttf"; sourceTree = "<group>"; };
 		F3F5FA21E7EC46BBB744FE54 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		F69FCCB925274C65006E0617 /* celoAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = celoAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F69FCCBB25274C65006E0617 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F69FCCBC25274C65006E0617 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F69FCCBE25274C65006E0617 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		F69FCCBF25274C65006E0617 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		F69FCCC125274C65006E0617 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F69FCCC225274C65006E0617 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F69FCCC525274C65006E0617 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F69FCCC725274C66006E0617 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F69FCCCA25274C66006E0617 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F69FCCCC25274C66006E0617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F69FCCCD25274C66006E0617 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F69FCCCF25274C66006E0617 /* celoAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = celoAppClip.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +163,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F69FCCB625274C65006E0617 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				578839D0CF59EEEA5A2BE093 /* libPods-celoAppClip.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -143,6 +197,7 @@
 				F3F5FA21E7EC46BBB744FE54 /* libz.tbd */,
 				691B91F2E7383B2AF94AAA8B /* Pods_celo.framework */,
 				3250C8E518DC2C848EA62404 /* Pods_celoTests.framework */,
+				DBA98715003F39BFBBC99DC7 /* libPods-celoAppClip.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -172,6 +227,8 @@
 				BF61F27C85F8E9CE335BA142 /* Pods-celoTests.release.xcconfig */,
 				0602B5AFC2AE93CFF1316467 /* Pods-celo-celoTests.debug.xcconfig */,
 				CCB1F49C3DAE62A0F72F43DF /* Pods-celo-celoTests.release.xcconfig */,
+				62941FAEAC7896B62584C93A /* Pods-celoAppClip.debug.xcconfig */,
+				CF0CF7641B5412195D6D92B1 /* Pods-celoAppClip.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -189,6 +246,7 @@
 				13B07FAE1A68108700A75B9A /* celo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* celoTests */,
+				F69FCCBA25274C65006E0617 /* celoAppClip */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				E3041EF3155B4320B4CF8300 /* Resources */,
 				080C3131575C4BB58D359856 /* Frameworks */,
@@ -206,6 +264,7 @@
 				00E356EE1AD99517003FC87E /* celoTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* celo-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* celo-tvOSTests.xctest */,
+				F69FCCB925274C65006E0617 /* celoAppClip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -213,9 +272,9 @@
 		E3041EF3155B4320B4CF8300 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0317E784245B696200AAAC2E /* Inter-Medium.ttf */,
-				0317E783245B696200AAAC2E /* Inter-Regular.ttf */,
-				0317E785245B696200AAAC2E /* Inter-SemiBold.ttf */,
+				0317E784245B696200AAAC2E /* ../fonts/Inter-Medium.ttf */,
+				0317E783245B696200AAAC2E /* ../fonts/Inter-Regular.ttf */,
+				0317E785245B696200AAAC2E /* ../fonts/Inter-SemiBold.ttf */,
 				B59F6FDB7D084157A12E7A52 /* Hind-Bold.ttf */,
 				95E01263B685485BA7D5CEB0 /* Hind-Light.ttf */,
 				AAE92820119F4CC5B23C6636 /* Hind-Medium.ttf */,
@@ -225,6 +284,25 @@
 				A86AF23416DE47E0B4068AE7 /* Jost-Medium.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		F69FCCBA25274C65006E0617 /* celoAppClip */ = {
+			isa = PBXGroup;
+			children = (
+				F69FCCBB25274C65006E0617 /* AppDelegate.h */,
+				F69FCCBC25274C65006E0617 /* AppDelegate.m */,
+				F69FCCBE25274C65006E0617 /* SceneDelegate.h */,
+				F69FCCBF25274C65006E0617 /* SceneDelegate.m */,
+				F69FCCC125274C65006E0617 /* ViewController.h */,
+				F69FCCC225274C65006E0617 /* ViewController.m */,
+				F69FCCC425274C65006E0617 /* Main.storyboard */,
+				F69FCCC725274C66006E0617 /* Assets.xcassets */,
+				F69FCCC925274C66006E0617 /* LaunchScreen.storyboard */,
+				F69FCCCC25274C66006E0617 /* Info.plist */,
+				F69FCCCD25274C66006E0617 /* main.m */,
+				F69FCCCF25274C66006E0617 /* celoAppClip.entitlements */,
+			);
+			path = celoAppClip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,10 +340,12 @@
 				ED787910B2A9AE78802F0CBC /* [CP] Embed Pods Frameworks */,
 				FAA606D3D7E04ED7985FC9FF /* Upload Debug Symbols to Sentry */,
 				DF435D29C5F44D62FCA95354 /* [CP-User] [RNFB] Core Configuration */,
+				F69FCCD325274C66006E0617 /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F69FCCD125274C66006E0617 /* PBXTargetDependency */,
 			);
 			name = celo;
 			productName = "Hello World";
@@ -308,6 +388,25 @@
 			productReference = 2D02E4901E0B4A5D006451C7 /* celo-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		F69FCCB825274C65006E0617 /* celoAppClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F69FCCD625274C67006E0617 /* Build configuration list for PBXNativeTarget "celoAppClip" */;
+			buildPhases = (
+				800DA9D0096A842D99F1B315 /* [CP] Check Pods Manifest.lock */,
+				F69FCCB525274C65006E0617 /* Sources */,
+				F69FCCB625274C65006E0617 /* Frameworks */,
+				F69FCCB725274C65006E0617 /* Resources */,
+				D878E0BB940F8A3E1310FA14 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = celoAppClip;
+			productName = celoAppClip;
+			productReference = F69FCCB925274C65006E0617 /* celoAppClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -343,6 +442,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
+					F69FCCB825274C65006E0617 = {
+						CreatedOnToolsVersion = 12.0.1;
+						DevelopmentTeam = HDPUB8C3KG;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "celo" */;
@@ -363,6 +467,7 @@
 				00E356ED1AD99517003FC87E /* celoTests */,
 				2D02E47A1E0B4A5D006451C7 /* celo-tvOS */,
 				2D02E48F1E0B4A5D006451C7 /* celo-tvOSTests */,
+				F69FCCB825274C65006E0617 /* celoAppClip */,
 			);
 		};
 /* End PBXProject section */
@@ -379,15 +484,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0317E78A245B696200AAAC2E /* Inter-SemiBold.ttf in Resources */,
+				0317E78A245B696200AAAC2E /* ../fonts/Inter-SemiBold.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				0445977E03C74B20A93158B5 /* Hind-Bold.ttf in Resources */,
 				0350D7F2EBD64D0585FEF0AF /* Hind-Light.ttf in Resources */,
-				0317E786245B696200AAAC2E /* Inter-Regular.ttf in Resources */,
+				0317E786245B696200AAAC2E /* ../fonts/Inter-Regular.ttf in Resources */,
 				0581BC2D3AEB42D086D403E3 /* Hind-Medium.ttf in Resources */,
 				2CE54C7D16D44C5380C53609 /* Hind-Regular.ttf in Resources */,
-				0317E788245B696200AAAC2E /* Inter-Medium.ttf in Resources */,
+				0317E788245B696200AAAC2E /* ../fonts/Inter-Medium.ttf in Resources */,
 				5575263ED1EA4F568D328DE9 /* Hind-SemiBold.ttf in Resources */,
 				EB3CF5B346854570A1EC69B3 /* Jost-Book.ttf in Resources */,
 				2E6B8DA1BF6440D89CB45CCA /* Jost-Medium.ttf in Resources */,
@@ -406,6 +511,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F69FCCB725274C65006E0617 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F69FCCCB25274C66006E0617 /* LaunchScreen.storyboard in Resources */,
+				F69FCCC825274C66006E0617 /* Assets.xcassets in Resources */,
+				F69FCCC625274C65006E0617 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +593,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		800DA9D0096A842D99F1B315 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-celoAppClip-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D878E0BB940F8A3E1310FA14 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-celoAppClip/Pods-celoAppClip-resources.sh",
+				"${PODS_ROOT}/Stripe/Stripe/ExternalResources/Stripe3DS2.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Stripe/Stripe.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe3DS2.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-celoAppClip/Pods-celoAppClip-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DF435D29C5F44D62FCA95354 /* [CP-User] [RNFB] Core Configuration */ = {
@@ -707,6 +864,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F69FCCB525274C65006E0617 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F69FCCC325274C65006E0617 /* ViewController.m in Sources */,
+				F69FCCBD25274C65006E0617 /* AppDelegate.m in Sources */,
+				F69FCCCE25274C66006E0617 /* main.m in Sources */,
+				F69FCCC025274C65006E0617 /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -720,6 +888,11 @@
 			target = 2D02E47A1E0B4A5D006451C7 /* celo-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
+		F69FCCD125274C66006E0617 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F69FCCB825274C65006E0617 /* celoAppClip */;
+			targetProxy = F69FCCD025274C66006E0617 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -730,6 +903,22 @@
 			);
 			name = LaunchScreen.xib;
 			path = celo;
+			sourceTree = "<group>";
+		};
+		F69FCCC425274C65006E0617 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F69FCCC525274C65006E0617 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F69FCCC925274C66006E0617 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F69FCCCA25274C66006E0617 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1152,6 +1341,87 @@
 			};
 			name = Release;
 		};
+		F69FCCD425274C67006E0617 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62941FAEAC7896B62584C93A /* Pods-celoAppClip.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = celoAppClip/celoAppClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = HDPUB8C3KG;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = celoAppClip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.celo.mobile.alfajores.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F69FCCD525274C67006E0617 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF0CF7641B5412195D6D92B1 /* Pods-celoAppClip.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = celoAppClip/celoAppClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = HDPUB8C3KG;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = celoAppClip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.celo.mobile.alfajores.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1196,6 +1466,15 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F69FCCD625274C67006E0617 /* Build configuration list for PBXNativeTarget "celoAppClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F69FCCD425274C67006E0617 /* Debug */,
+				F69FCCD525274C67006E0617 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -493,6 +493,7 @@ PODS:
   - Sentry (5.2.0):
     - Sentry/Core (= 5.2.0)
   - Sentry/Core (5.2.0)
+  - Stripe (20.0.0)
   - Toast (4.0.0)
   - Yoga (1.14.0)
 
@@ -570,6 +571,7 @@ DEPENDENCIES:
   - RNShare (from `../../../node_modules/react-native-share`)
   - RNSVG (from `../../../node_modules/react-native-svg`)
   - Segment-Firebase
+  - Stripe
   - Yoga (from `../../../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -601,6 +603,7 @@ SPEC REPOS:
     - Protobuf
     - Segment-Firebase
     - Sentry
+    - Stripe
     - Toast
 
 EXTERNAL SOURCES:
@@ -842,9 +845,10 @@ SPEC CHECKSUMS:
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   Segment-Firebase: 9ac8c3bf9d5c6dcaf248408aca604e023c4b5aad
   Sentry: 6e04bc3e11bf771ca79140a112de64dcfbc7d8cb
+  Stripe: 339e8c50d3a27dcbe9a4f35b98c260fb9715d962
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
 
-PODFILE CHECKSUM: 470c646f25b89e063843bdec1cd889a649b38781
+PODFILE CHECKSUM: 6c270f920e4e073fa211507c4e70b7d5edf36cb1
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3
