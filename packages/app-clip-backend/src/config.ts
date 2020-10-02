@@ -12,6 +12,7 @@ export interface NetworkConfig {
   minAttestations: number
   twilioPhoneNumber: string
   twilioClient: Twilio | null
+  stripeApiKey: string
 }
 
 let twilioClient: Twilio
@@ -45,5 +46,6 @@ export function getNetworkConfig(net: string): NetworkConfig {
     minAttestations: Number(config[net].min_attestations),
     twilioPhoneNumber: config[net].twilio_phone_number,
     twilioClient: getTwilioClient(config[net].twilio_sid, config[net].twilio_auth_token),
+    stripeApiKey: config[net].stripe_api_key,
   }
 }

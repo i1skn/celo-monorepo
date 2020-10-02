@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin'
 import * as functions from 'firebase-functions'
+import Stripe from 'stripe'
 import { getNetworkConfig } from './config'
 import { AccountPool, processRequest } from './database-helper'
 
@@ -14,7 +15,37 @@ const db = admin.database()
 
 const SECOND = 1000
 
-export const faucetRequestProcessor = functions
+export const createPaymentIntent = functions.https.onRequest(async (req, res) => {
+  // We're only using alfajores for now
+  const config = getNetworkConfig('alfajores')
+
+  const stripe = new Stripe(config.stripeApiKey, {
+    apiVersion: '2020-08-27',
+  })
+
+  const { amount, currencyCode, celoAddress } = req.body
+
+  if (!celoAddress) {
+    throw new Error(`Invalid address: '${celoAddress}'`)
+  }
+
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount,
+    currency: currencyCode,
+    description: `Payment for ${celoAddress}`,
+    metadata: {
+      celoAddress,
+    },
+  })
+  const clientSecret = paymentIntent.client_secret
+
+  res.json({
+    description: `Created payment intent for ${amount} ${currencyCode} ${celoAddress}`,
+    clientSecret,
+  })
+})
+
+export const paymentRequestProcessor = functions
   .runWith(PROCESSOR_RUNTIME_OPTS)
   .database.ref('/{network}/requests/{request}')
   .onCreate(async (snap, ctx) => {
