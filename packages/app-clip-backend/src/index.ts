@@ -95,6 +95,24 @@ export const stripeWebhook = functions.https.onRequest(async (req, res) => {
   res.json({ received: true })
 })
 
+export const getIntentStatus = functions.https.onRequest(async (req, res) => {
+  // We're only using alfajores for now
+  const network = 'alfajores'
+  const { intentId } = req.query
+
+  if (!intentId) {
+    throw new Error(`Invalid intent: '${intentId}'`)
+  }
+
+  const requestSnap = await db.ref(`${network}/requests/${intentId}`).once('value')
+  if (!requestSnap.exists()) {
+    return res.status(404).end()
+  }
+
+  const { beneficiary, status, dollarTxHash, createdAt }: RequestRecord = requestSnap.val()
+  res.json({ beneficiary, status, dollarTxHash, createdAt })
+})
+
 export const paymentRequestProcessor = functions
   .runWith(PROCESSOR_RUNTIME_OPTS)
   .database.ref('/{network}/requests/{request}')
