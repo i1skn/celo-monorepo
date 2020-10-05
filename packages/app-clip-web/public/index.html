@@ -6,29 +6,29 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
     <script type="text/javascript" src="qrcode.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css" />
+    <style>
+      input[type='text'] {
+        box-sizing: border-box;
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
     <h1>App Clip Hackathon - QR generator</h1>
     <h2>Config</h2>
     <form id="form">
       <label for="baseUrl">Base URL</label>
-      <input
-        id="baseUrl"
-        type="text"
-        value="https://example.com/"
-        placeholder="Base url"
-        style="width:100%"
-      />
+      <input id="baseUrl" type="text" value="https://example.com/" placeholder="Base url" />
       <label for="beneficiary">Beneficiary</label>
       <input
         id="beneficiary"
         type="text"
         value="0x815623ce38342071f59cf8314b8a2973ae9a96c6"
         placeholder="Beneficiary address (0xABC...)"
-        style="width:100%"
       />
       <label for="amount">cUSD amount</label>
-      <input id="amount" type="text" value="5" placeholder="cUSD amount" style="width:100%" /><br />
+      <input id="amount" type="text" value="5" placeholder="cUSD amount" />
+      <br />
       <input type="submit" value="Generate QR code" />
     </form>
     <h2>Result</h2>
