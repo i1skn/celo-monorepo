@@ -8,6 +8,7 @@
 
 #import "SceneDelegate.h"
 #import "NSURL+Utils.h"
+#import "ViewController.h"
 
 @interface SceneDelegate ()
 
@@ -77,10 +78,11 @@
   
   NSDictionary *params = [url queryParams];
   
-  NSLog(@"Beneficary: %@", params[@"beneficiary"]);
-  NSLog(@"Amount: %@ %@", params[@"amount"], params[@"token"]);
-  
   // TODO: pass params to ViewController
+
+  ViewController *viewController = self.window.rootViewController;
+  [viewController setParams:[NSNumber numberWithFloat:[params[@"amount"] floatValue]] beneficiary:params[@"beneficiary"] token:params[@"token"]];
+
 }
 
 @end

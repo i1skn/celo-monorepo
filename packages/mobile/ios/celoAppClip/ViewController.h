@@ -10,5 +10,7 @@
 
 @interface ViewController : UIViewController
 
+- (void) setParams:(NSNumber*)amount beneficiary:(NSString*)beneficiary token:(NSString*)token;
+
 @end
 

@@ -16,6 +16,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *txStatus;
 @property (nonatomic, copy) NSString *intentId;
 @property (nonatomic) NSTimer *timer;
+
+@property (nonatomic) NSNumber *amount;
+@property (nonatomic) NSString *beneficiary;
+@property (nonatomic) NSString *token;
+
 @end
 
 @interface ViewController ()
@@ -36,7 +41,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.activityIndicator.hidesWhenStopped = YES;
     [self.payButton addTarget:self action:@selector(pay) forControlEvents:UIControlEventTouchUpInside];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(checkTransactionsStatus) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(checkTransactionsStatus) userInfo:nil repeats:YES];
 }
 
 - (void)pay {
@@ -46,7 +51,7 @@
     paymentRequest.paymentSummaryItems = @[
         // The final line should represent your company;
         // it'll be prepended with the word "Pay" (i.e. "Pay iHats, Inc $50")
-        [PKPaymentSummaryItem summaryItemWithLabel:@"in cUSD" amount:[NSDecimalNumber decimalNumberWithString:@"5.00"]],
+      [PKPaymentSummaryItem summaryItemWithLabel:[NSString stringWithFormat:@"in %@", self.token] amount:[NSDecimalNumber decimalNumberWithString:[self.amount stringValue]]],
     ];
     paymentRequest.requiredBillingContactFields = [NSSet setWithArray:@[PKContactFieldEmailAddress]];
   
@@ -75,14 +80,15 @@
     NSURL *url = [NSURL URLWithString:backendURL];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     request.HTTPMethod = @"POST";
-    
+
     NSString *postBody = [NSString stringWithFormat:
-                              @"amount=%@&currencyCode=%@&celoAddress=%@",
-                              @"500",
+                              @"amount=%i&currencyCode=%@&celoAddress=%@",
+                              [[NSNumber numberWithFloat:[self.amount floatValue] * 100] intValue],
                               @"USD",
-                              @"0xLOL_IVAN"
+                              self.beneficiary
                               ];
     NSData *data = [postBody dataUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"%@", postBody);
     NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request
                                                                fromData:data
                                                       completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -104,6 +110,9 @@
                                                                   [json isKindOfClass:[NSDictionary class]] &&
                                                                   [json[@"clientSecret"] isKindOfClass:[NSString class]] && [json[@"intentId"] isKindOfClass:[NSString class]]) {
                                                                 self.intentId = json[@"intentId"];
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                  self.txStatus.text = @"Waiting";
+                                                                });
                                                                 completion(json[@"clientSecret"], nil);
                                                               }
                                                               else {
@@ -179,6 +188,15 @@
             NSLog(@"Cancelled by user");
             break;
     }
+}
+
+-(void) setParams:(NSNumber*)amount beneficiary:(NSString*)beneficiary token:(NSString*)token {
+  self.amount = amount;
+  self.beneficiary = beneficiary;
+  self.token = token;
+  
+//  NSLog(@"Beneficary: %@", self.beneficiary);
+//  NSLog(@"Amount: %@ %@", self.amount, self.token);
 }
 
 @end
