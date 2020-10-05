@@ -72,6 +72,8 @@ export const stripeWebhook = functions.https.onRequest(async (req, res) => {
         `Inserting payment request to ${paymentIntent.metadata.celoAddress} on ${paymentIntent.metadata.network}`
       )
       const { celoAddress, network } = paymentIntent.metadata
+      const { amount } = paymentIntent
+
       const requestRef = db.ref(`${network}/requests/${paymentIntent.id}`)
       await requestRef.transaction((record: RequestRecord): RequestRecord | undefined => {
         if (record) {
@@ -80,6 +82,8 @@ export const stripeWebhook = functions.https.onRequest(async (req, res) => {
         }
         return {
           beneficiary: celoAddress,
+          amount: (amount / 100).toString(), // Decimal
+          token: 'cUSD', // assume it's only cUSD for now
           status: RequestStatus.Pending,
           type: RequestType.Faucet,
           createdAt: Date.now(),
@@ -109,8 +113,15 @@ export const getIntentStatus = functions.https.onRequest(async (req, res) => {
     return res.status(404).end()
   }
 
-  const { beneficiary, status, dollarTxHash, createdAt }: RequestRecord = requestSnap.val()
-  res.json({ beneficiary, status, dollarTxHash, createdAt })
+  const {
+    status,
+    beneficiary,
+    amount,
+    token,
+    transactionHash,
+    createdAt,
+  }: RequestRecord = requestSnap.val()
+  res.json({ status, beneficiary, amount, token, transactionHash, createdAt })
 })
 
 export const paymentRequestProcessor = functions

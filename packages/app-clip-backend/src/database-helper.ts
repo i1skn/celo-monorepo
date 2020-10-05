@@ -3,6 +3,7 @@ import { PhoneNumberUtils } from '@celo/utils'
 import { retryAsync, sleep } from '@celo/utils/lib/async'
 import { database } from 'firebase-admin'
 import { DataSnapshot } from 'firebase-functions/lib/providers/database'
+import Web3 from 'web3'
 import { CeloAdapter } from './celo-adapter'
 import { NetworkConfig } from './config'
 import { ExecutionResult, logExecutionResult } from './metrics'
@@ -37,9 +38,9 @@ export interface RequestRecord {
   status: RequestStatus
   type: RequestType
   mobileOS?: MobileOS // only on invite
-  dollarTxHash?: string
-  goldTxHash?: string
-  escrowTxHash?: string // only on Invites
+  amount: string // Decimal number in string
+  token: 'cUSD' | 'CELO'
+  transactionHash?: string
   createdAt: number
 }
 
@@ -89,10 +90,11 @@ export async function processRequest(snap: DataSnapshot, pool: AccountPool, conf
 
 function buildHandleFaucet(request: RequestRecord, snap: DataSnapshot, config: NetworkConfig) {
   return async (account: AccountRecord) => {
-    const { nodeUrl, faucetDollarAmount } = config
+    const { nodeUrl } = config
     const celo = new CeloAdapter({ nodeUrl, pk: account.pk })
     // await retryAsync(sendGold, 3, [celo, request.beneficiary, faucetGoldAmount, snap], 500)
-    await retryAsync(sendDollars, 3, [celo, request.beneficiary, faucetDollarAmount, snap], 500)
+    const dollarAmount = Web3.utils.toWei(request.amount, 'ether')
+    await retryAsync(sendDollars, 3, [celo, request.beneficiary, dollarAmount, snap], 500)
   }
 }
 
@@ -125,7 +127,7 @@ function buildHandleInvite(request: RequestRecord, snap: DataSnapshot, config: N
     const escrowReceipt = await escrowTx.sendAndWaitForReceipt()
     const escrowTxHash = escrowReceipt.transactionHash
     console.info(`req(${snap.key}): Escrow Dollar Transaction Sent. txhash:${escrowTxHash}`)
-    await snap.ref.update({ escrowTxHash })
+    await snap.ref.update({ transactionHash: escrowTxHash })
 
     console.info(`req(${snap.key}): Txs done, stopping kit`)
     celo.stop()
@@ -149,7 +151,7 @@ async function sendDollars(
   const dollarTxReceipt = await dollarTx.sendAndWaitForReceipt()
   const dollarTxHash = dollarTxReceipt.transactionHash
   console.info(`req(${snap.key}): Dollar Transaction Sent. txhash:${dollarTxHash}`)
-  await snap.ref.update({ dollarTxHash })
+  await snap.ref.update({ transactionHash: dollarTxHash })
   return dollarTxHash
 }
 
@@ -159,7 +161,7 @@ async function sendGold(celo: CeloAdapter, address: Address, amount: string, sna
   const goldTxReceipt = await goldTx.sendAndWaitForReceipt()
   const goldTxHash = goldTxReceipt.transactionHash
   console.info(`req(${snap.key}): Gold Transaction Sent. txhash:${goldTxHash}`)
-  await snap.ref.update({ goldTxHash })
+  await snap.ref.update({ transactionHash: goldTxHash })
   return goldTxHash
 }
 
