@@ -11,8 +11,11 @@
 #import <PassKit/PassKit.h>
 
 @interface ViewController () <STPApplePayContextDelegate>
-@property (nonatomic, weak) PKPaymentButton *payButton;
-@property (nonatomic, weak) UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet PKPaymentButton *payButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *txStatus;
+@property (nonatomic, copy) NSString *intentId;
+@property (nonatomic) NSTimer *timer;
 @end
 
 @interface ViewController ()
@@ -31,24 +34,9 @@
 #endif
     self.title = @"Apple Pay";
     self.edgesForExtendedLayout = UIRectEdgeNone;
-
-    PKPaymentButton *button = [PKPaymentButton buttonWithType:PKPaymentButtonTypePlain style:PKPaymentButtonStyleBlack];
-    [button addTarget:self action:@selector(pay) forControlEvents:UIControlEventTouchUpInside];
-    self.payButton = button;
-    [self.view addSubview:button];
-    
-  UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
-    activityIndicator.hidesWhenStopped = YES;
-    self.activityIndicator = activityIndicator;
-    [self.view addSubview:activityIndicator];
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    CGRect bounds = self.view.bounds;
-    self.payButton.center = CGPointMake(CGRectGetMidX(bounds), 100);
-    self.activityIndicator.center = CGPointMake(CGRectGetMidX(bounds),
-                                                CGRectGetMaxY(self.payButton.frame) + 15*2);
+    self.activityIndicator.hidesWhenStopped = YES;
+    [self.payButton addTarget:self action:@selector(pay) forControlEvents:UIControlEventTouchUpInside];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(checkTransactionsStatus) userInfo:nil repeats:YES];
 }
 
 - (void)pay {
@@ -101,7 +89,7 @@
                                                           NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
                                                           if (!error && httpResponse.statusCode != 200) {
                                                               NSString *errorMessage = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] ?: @"There was an error connecting to your payment backend.";
-                                                              error = [NSError errorWithDomain:@"MyAPIClientErrorDomain"
+                                                              error = [NSError errorWithDomain:@"APIClientErrorDomain"
                                                                                           code:STPInvalidRequestError
                                                                                       userInfo:@{NSLocalizedDescriptionKey: errorMessage}];
                                                           }
@@ -114,7 +102,8 @@
                                                               
                                                               if (json &&
                                                                   [json isKindOfClass:[NSDictionary class]] &&
-                                                                  [json[@"clientSecret"] isKindOfClass:[NSString class]]) {
+                                                                  [json[@"clientSecret"] isKindOfClass:[NSString class]] && [json[@"intentId"] isKindOfClass:[NSString class]]) {
+                                                                self.intentId = json[@"intentId"];
                                                                 completion(json[@"clientSecret"], nil);
                                                               }
                                                               else {
@@ -127,9 +116,53 @@
   //completion(@"pi_1HXo7iAUPBfhIkJQZXsDibR5_secret_LZHARYX37L3ULiEw6hoPl8TgE", nil);
 }
 
+- (void) checkTransactionsStatus {
+  if (self.intentId != nil) {
+    NSString *backendURL = [NSString stringWithFormat:
+                            @"https://us-central1-app-clip-hackathon.cloudfunctions.net/getIntentStatus?intentId=%@",
+                            self.intentId
+                            ];
+      
+    // This asks the backend to create a SetupIntent for us, which can then be passed to the Stripe SDK to confirm
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    NSURL *url = [NSURL URLWithString:backendURL];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    request.HTTPMethod = @"GET";
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+                                                          if (!error && httpResponse.statusCode != 200) {
+                                                              NSString *errorMessage = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] ?: @"There was an error connecting to your payment backend.";
+                                                              error = [NSError errorWithDomain:@"APIClientErrorDomain"
+                                                                                          code:STPInvalidRequestError
+                                                                                      userInfo:@{NSLocalizedDescriptionKey: errorMessage}];
+                                                          }
+                                                          else {
+                                                              NSError *jsonError = nil;
+                                                              id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                                              
+                                                              if (json &&
+                                                                  [json isKindOfClass:[NSDictionary class]] &&
+                                                                  [json[@"status"] isKindOfClass:[NSString class]]) {
+                                                                NSLog(@"%@", json);
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                  self.txStatus.text = json[@"status"];
+                                                                  if ([json[@"status"]  isEqual: @"Done"] || [json[@"status"]  isEqual: @"Failed"]) {
+                                                                      self.intentId = nil;
+                                                                      [self.activityIndicator stopAnimating];
+                                                                      self.payButton.enabled = YES;
+                                                                    }
+                                                                  });
+                                                              }
+                                                          }
+                                                      }];
+    
+    [dataTask resume];
+  }
+}
+
 - (void)applePayContext:(STPApplePayContext *)context didCompleteWithStatus:(STPPaymentStatus)status error:(NSError *)error {
-    [self.activityIndicator stopAnimating];
-    self.payButton.enabled = YES;
+    
 
     switch (status) {
         case STPPaymentStatusSuccess:

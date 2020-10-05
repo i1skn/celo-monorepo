@@ -16,8 +16,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Transfer $5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajX-1b-e6F">
-                                <rect key="frame" x="143.66666666666666" y="362" width="88" height="21"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="2Vz-rQ-ecz">
+                                <rect key="frame" x="177.66666666666666" y="396" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqC-ST-FGC" customClass="PKPaymentButton">
+                                <rect key="frame" x="110" y="345" width="154" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="type">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="te6-37-r6g">
+                                <rect key="frame" x="113" y="463" width="148" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -26,13 +41,22 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ajX-1b-e6F" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fZs-Xh-pSD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="te6-37-r6g" secondAttribute="trailing" constant="114" id="0Gs-VH-Gqi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="te6-37-r6g" secondAttribute="bottom" constant="315" id="Dyz-VX-1op"/>
+                            <constraint firstItem="2Vz-rQ-ecz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="GCL-7o-Li2"/>
+                            <constraint firstItem="2Vz-rQ-ecz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Obz-dR-HMH"/>
+                            <constraint firstItem="te6-37-r6g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="113" id="bjN-ee-mdQ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="2Vz-rQ-ecz" id="3k3-VI-jfH"/>
+                        <outlet property="payButton" destination="JqC-ST-FGC" id="Eoq-U1-jZW"/>
+                        <outlet property="txStatus" destination="te6-37-r6g" id="x0O-UD-2fe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-197" y="26"/>
+            <point key="canvasLocation" x="-197.59999999999999" y="25.862068965517242"/>
         </scene>
     </scenes>
     <resources>
