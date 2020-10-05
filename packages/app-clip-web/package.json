@@ -1,0 +1,8 @@
+{
+  "name": "@celo/app-clip-web",
+  "version": "0.0.1",
+  "license": "MIT",
+  "devDependencies": {
+    "firebase-tools": "^8.4.2"
+  }
+}

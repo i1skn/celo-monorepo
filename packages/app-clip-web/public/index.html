@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+  <head>
+    <title>Cross-Browser QRCode generator for Javascript</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <script type="text/javascript" src="qrcode.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css" />
+  </head>
+  <body>
+    <h1>App Clip Hackathon - QR generator</h1>
+    <h2>Config</h2>
+    <form id="form">
+      <label for="baseUrl">Base URL</label>
+      <input
+        id="baseUrl"
+        type="text"
+        value="https://example.com/"
+        placeholder="Base url"
+        style="width:100%"
+      />
+      <label for="beneficiary">Beneficiary</label>
+      <input
+        id="beneficiary"
+        type="text"
+        value="0x815623ce38342071f59cf8314b8a2973ae9a96c6"
+        placeholder="Beneficiary address (0xABC...)"
+        style="width:100%"
+      />
+      <label for="amount">cUSD amount</label>
+      <input id="amount" type="text" value="5" placeholder="cUSD amount" style="width:100%" /><br />
+      <input type="submit" value="Generate QR code" />
+    </form>
+    <h2>Result</h2>
+    <div id="qrcode" style="width:300px; height:300px; margin-top:15px; margin-bottom:15px;"></div>
+    <p>Encoded value:</p>
+    <pre><code id="qrValue"></code></pre>
+
+    <script type="text/javascript">
+      var qrcode = new QRCode(document.getElementById('qrcode'), {
+        width: 300,
+        height: 300,
+      })
+
+      function makeCode() {
+        const baseUrl = document.getElementById('baseUrl').value
+        const beneficiary = document.getElementById('beneficiary').value
+        const amount = document.getElementById('amount').value
+
+        if (!baseUrl) {
+          alert('Input a base url')
+          return
+        }
+
+        if (!beneficiary) {
+          alert('Input a beneficiary')
+          return
+        }
+
+        if (!amount) {
+          alert('Input an amount')
+          return
+        }
+
+        const qrUrl = new URL(baseUrl)
+        qrUrl.searchParams.set('beneficiary', beneficiary)
+        qrUrl.searchParams.set('amount', amount)
+        qrUrl.searchParams.set('token', 'cUSD')
+
+        const qrValue = qrUrl.href
+
+        document.getElementById('qrValue').textContent = qrValue
+
+        qrcode.makeCode(qrValue)
+      }
+
+      makeCode()
+
+      const form = document.getElementById('form')
+      form.addEventListener('submit', function(event) {
+        event.preventDefault()
+        makeCode()
+      })
+    </script>
+  </body>
+</html>
