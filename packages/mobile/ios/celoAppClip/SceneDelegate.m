@@ -7,6 +7,7 @@
 //
 
 #import "SceneDelegate.h"
+#import "NSURL+Utils.h"
 
 @interface SceneDelegate ()
 
@@ -19,6 +20,9 @@
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+  
+  NSUserActivity *activity = connectionOptions.userActivities.anyObject;
+  [self handleActivity:activity];
 }
 
 
@@ -54,5 +58,29 @@
     // to restore the scene back to its current state.
 }
 
+- (void)scene:(UIScene *)scene continueUserActivity:(NSUserActivity *)userActivity {
+  [self handleActivity:userActivity];
+}
+
+- (void)handleActivity:(NSUserActivity*)activity {
+  if (!activity) {
+    NSLog(@"No user actvity set");
+    return;
+  }
+  if (![activity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
+    return;
+  }
+  
+  NSURL *url = activity.webpageURL;
+  
+  NSLog(@"Passed url: %@", url);
+  
+  NSDictionary *params = [url queryParams];
+  
+  NSLog(@"Beneficary: %@", params[@"beneficiary"]);
+  NSLog(@"Amount: %@ %@", params[@"amount"], params[@"token"]);
+  
+  // TODO: pass params to ViewController
+}
 
 @end
