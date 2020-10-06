@@ -53,7 +53,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "_XCAppClipURL"
-            value = "https://app-clip-hackathon.web.app/?beneficiary=0x815623ce38342071f59cf8314b8a2973ae9a96c6&amp;amount=1&amp;token=cUSD"
+            value = "https://app-clip-hackathon.web.app/?beneficiary=0x815623ce38342071f59cf8314b8a2973ae9a96c6&amp;amount=0.89&amp;token=cUSD"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

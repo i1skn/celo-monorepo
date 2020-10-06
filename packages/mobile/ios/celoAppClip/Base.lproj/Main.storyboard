@@ -16,24 +16,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="2Vz-rQ-ecz">
-                                <rect key="frame" x="177.66666666666666" y="396" width="20" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2Vz-rQ-ecz">
+                                <rect key="frame" x="169" y="387.66666666666669" width="37" height="37"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqC-ST-FGC" customClass="PKPaymentButton">
-                                <rect key="frame" x="110" y="345" width="154" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqC-ST-FGC" customClass="PKPaymentButton">
+                                <rect key="frame" x="16" y="739" width="343" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="style">
                                         <integer key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="type">
-                                        <integer key="value" value="1"/>
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="te6-37-r6g">
-                                <rect key="frame" x="113" y="463" width="148" height="0.0"/>
+                                <rect key="frame" x="16" y="456.66666666666669" width="343" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0xLOL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HzG-Ft-vum">
+                                <rect key="frame" x="16" y="341.66666666666669" width="343" height="14"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdu-W9-ljS">
+                                <rect key="frame" x="78" y="297" width="219" height="28.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -41,17 +56,28 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="te6-37-r6g" secondAttribute="trailing" constant="114" id="0Gs-VH-Gqi"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="te6-37-r6g" secondAttribute="bottom" constant="315" id="Dyz-VX-1op"/>
-                            <constraint firstItem="2Vz-rQ-ecz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="GCL-7o-Li2"/>
-                            <constraint firstItem="2Vz-rQ-ecz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Obz-dR-HMH"/>
-                            <constraint firstItem="te6-37-r6g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="113" id="bjN-ee-mdQ"/>
+                            <constraint firstItem="2Vz-rQ-ecz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1YC-Ga-PzF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HzG-Ft-vum" secondAttribute="trailing" constant="16" id="5uI-Br-mLx"/>
+                            <constraint firstItem="te6-37-r6g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="DSm-pn-VWZ"/>
+                            <constraint firstItem="2Vz-rQ-ecz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DfR-GE-YCG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tdu-W9-ljS" secondAttribute="trailing" constant="78" id="LMw-aj-jzc"/>
+                            <constraint firstItem="2Vz-rQ-ecz" firstAttribute="top" secondItem="HzG-Ft-vum" secondAttribute="bottom" constant="32" id="OdH-xN-Hy4"/>
+                            <constraint firstAttribute="bottom" secondItem="JqC-ST-FGC" secondAttribute="bottom" constant="32" id="UQV-17-QQx"/>
+                            <constraint firstItem="JqC-ST-FGC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="XX5-tk-CIG"/>
+                            <constraint firstItem="HzG-Ft-vum" firstAttribute="top" secondItem="tdu-W9-ljS" secondAttribute="bottom" constant="16" id="Xih-NL-wQA"/>
+                            <constraint firstItem="tdu-W9-ljS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="78" id="bir-rh-HDw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="te6-37-r6g" secondAttribute="trailing" constant="16" id="jj8-Ip-VFx"/>
+                            <constraint firstItem="HzG-Ft-vum" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="kF4-ph-2yP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JqC-ST-FGC" secondAttribute="trailing" constant="16" id="kkh-i6-FfE"/>
+                            <constraint firstItem="te6-37-r6g" firstAttribute="top" secondItem="2Vz-rQ-ecz" secondAttribute="bottom" constant="32" id="kyu-75-Se2"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="2Vz-rQ-ecz" id="3k3-VI-jfH"/>
+                        <outlet property="address" destination="HzG-Ft-vum" id="7oh-rx-LfX"/>
                         <outlet property="payButton" destination="JqC-ST-FGC" id="Eoq-U1-jZW"/>
                         <outlet property="txStatus" destination="te6-37-r6g" id="x0O-UD-2fe"/>
+                        <outlet property="welcomeMessage" destination="tdu-W9-ljS" id="2ko-Kj-6oX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

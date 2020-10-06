@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet PKPaymentButton *payButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UILabel *txStatus;
+@property (weak, nonatomic) IBOutlet UILabel *welcomeMessage;
+@property (weak, nonatomic) IBOutlet UILabel *address;
 @property (nonatomic, copy) NSString *intentId;
 @property (nonatomic) NSTimer *timer;
 
@@ -32,11 +34,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-#ifdef __IPHONE_13_0
-    if (@available(iOS 13.0, *)) {
-        self.view.backgroundColor = [UIColor systemBackgroundColor];
-    }
-#endif
+//#ifdef __IPHONE_13_0
+//    if (@available(iOS 13.0, *)) {
+//        self.view.backgroundColor = [UIColor systemBackgroundColor];
+//    }
+//#endif
     self.title = @"Apple Pay";
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.activityIndicator.hidesWhenStopped = YES;
@@ -71,7 +73,6 @@
 #pragma mark - STPApplePayContextDelegate
 
 - (void)applePayContext:(STPApplePayContext *)context didCreatePaymentMethod:(__unused STPPaymentMethod *)paymentMethod paymentInformation:(__unused PKPayment *)paymentInformation completion:(STPIntentClientSecretCompletionBlock)completion {
-  
     NSString *backendURL = @"https://us-central1-app-clip-hackathon.cloudfunctions.net/createPaymentIntent";
       
     // This asks the backend to create a SetupIntent for us, which can then be passed to the Stripe SDK to confirm
@@ -110,9 +111,7 @@
                                                                   [json isKindOfClass:[NSDictionary class]] &&
                                                                   [json[@"clientSecret"] isKindOfClass:[NSString class]] && [json[@"intentId"] isKindOfClass:[NSString class]]) {
                                                                 self.intentId = json[@"intentId"];
-                                                                dispatch_async(dispatch_get_main_queue(), ^{
-                                                                  self.txStatus.text = @"Waiting";
-                                                                });
+                                                                [self changeTxStatus:@"Processing"];
                                                                 completion(json[@"clientSecret"], nil);
                                                               }
                                                               else {
@@ -122,7 +121,6 @@
                                                       }];
     
     [uploadTask resume];
-  //completion(@"pi_1HXo7iAUPBfhIkJQZXsDibR5_secret_LZHARYX37L3ULiEw6hoPl8TgE", nil);
 }
 
 - (void) checkTransactionsStatus {
@@ -155,7 +153,7 @@
                                                                   [json[@"status"] isKindOfClass:[NSString class]]) {
                                                                 NSLog(@"%@", json);
                                                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                                                  self.txStatus.text = json[@"status"];
+                                                                  [self changeTxStatus:json[@"status"]];
                                                                   if ([json[@"status"]  isEqual: @"Done"] || [json[@"status"]  isEqual: @"Failed"]) {
                                                                       self.intentId = nil;
                                                                       [self.activityIndicator stopAnimating];
@@ -172,7 +170,8 @@
 
 - (void)applePayContext:(STPApplePayContext *)context didCompleteWithStatus:(STPPaymentStatus)status error:(NSError *)error {
     
-
+  [self.activityIndicator stopAnimating];
+  self.payButton.enabled = YES;
     switch (status) {
         case STPPaymentStatusSuccess:
             NSLog(@"Success!");
@@ -194,9 +193,16 @@
   self.amount = amount;
   self.beneficiary = beneficiary;
   self.token = token;
-  
-//  NSLog(@"Beneficary: %@", self.beneficiary);
-//  NSLog(@"Amount: %@ %@", self.amount, self.token);
+  dispatch_async(dispatch_get_main_queue(), ^{
+    self.address.text = beneficiary;
+    self.welcomeMessage.text = [NSString stringWithFormat:@"Hey, you're about to send $%@ to:", amount];
+  });
+}
+
+-(void) changeTxStatus:(NSString*)status {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    self.txStatus.text = [NSString stringWithFormat:@"Status: %@", status];
+  });
 }
 
 @end
