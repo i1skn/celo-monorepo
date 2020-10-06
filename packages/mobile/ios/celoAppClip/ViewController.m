@@ -73,7 +73,7 @@
 #pragma mark - STPApplePayContextDelegate
 
 - (void)applePayContext:(STPApplePayContext *)context didCreatePaymentMethod:(__unused STPPaymentMethod *)paymentMethod paymentInformation:(__unused PKPayment *)paymentInformation completion:(STPIntentClientSecretCompletionBlock)completion {
-    NSString *backendURL = @"https://us-central1-app-clip-hackathon.cloudfunctions.net/createPaymentIntent";
+    NSString *backendURL = @"https://us-east1-app-clip-hackathon.cloudfunctions.net/createPaymentIntent2";
       
     // This asks the backend to create a SetupIntent for us, which can then be passed to the Stripe SDK to confirm
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -170,7 +170,7 @@
 
 - (void)applePayContext:(STPApplePayContext *)context didCompleteWithStatus:(STPPaymentStatus)status error:(NSError *)error {
     
-  [self.activityIndicator stopAnimating];
+
   self.payButton.enabled = YES;
     switch (status) {
         case STPPaymentStatusSuccess:
@@ -185,6 +185,7 @@
             
         case STPPaymentStatusUserCancellation:
             NSLog(@"Cancelled by user");
+        [self.activityIndicator stopAnimating];
             break;
     }
 }
